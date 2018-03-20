@@ -6,9 +6,7 @@
  {
 
 	protected $options;
-
-	protected $config;
-
+	
 	public function __construct(ConnectionOptionsInterface $options)
 	{
 	 $this->options = $options;
