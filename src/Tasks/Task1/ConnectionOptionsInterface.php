@@ -1,10 +1,10 @@
 <?php
 
-    namespace YaroslavPodolyak\Tasks\Task1;
+ namespace YaroslavPodolyak\Tasks\Task1;
 
 
-    interface ConnectionOptionsInterface
-    {
+ interface ConnectionOptionsInterface
+ {
 
-        public function getDns(): string;
-    }
+	public function getDns(): string;
+ }

@@ -1,19 +1,19 @@
 <?php
 
-    namespace YaroslavPodolyak\Tasks\Task1;
+ namespace YaroslavPodolyak\Tasks\Task1;
 
-    class Connection
-    {
+ class Connection
+ {
 
-        protected $options;
+	protected $options;
 
-        public function __construct(ConnectionOptionsInterface $options)
-        {
-            $this->options = $options;
-        }
+	public function __construct(ConnectionOptionsInterface $options)
+	{
+	 $this->options = $options;
+	}
 
-        public function __toString(): string
-        {
-            return $this->options->getDns();
-        }
-    }
+	public function __toString(): string
+	{
+	 return $this->options->getDns();
+	}
+ }

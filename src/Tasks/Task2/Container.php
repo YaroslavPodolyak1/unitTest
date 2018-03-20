@@ -1,82 +1,76 @@
 <?php
-    /**
-     * Created by PhpStorm.
-     * User: Ярослав
-     * Date: 20.03.2018
-     * Time: 10:42
-     */
 
-    namespace YaroslavPodolyak\Tasks\Task2;
+ namespace YaroslavPodolyak\Tasks\Task2;
 
-    use ArrayAccess;
+ use ArrayAccess;
 
-    class Container implements ArrayAccess
-    {
+ class Container implements ArrayAccess
+ {
 
-        private $bindings = [];
+	private $bindings = [];
 
-        public function offsetGet($offset)
-        {
-            return $this->get($offset);
-        }
+	public function offsetGet($offset)
+	{
+	 return $this->get($offset);
+	}
 
-        public function offsetExists($offset)
-        {
-            return $this->has($offset);
-        }
+	public function offsetExists($offset)
+	{
+	 return $this->has($offset);
+	}
 
-        public function offsetSet($offset, $value)
-        {
-            $this->set($offset, $value);
-        }
+	public function offsetSet($offset, $value)
+	{
+	 $this->set($offset, $value);
+	}
 
-        public function offsetUnset($offset)
-        {
-            $this->unset($offset);
-        }
+	public function offsetUnset($offset)
+	{
+	 $this->unset($offset);
+	}
 
-        public function get(string $key)
-        {
-            if (! $this->has($key)) {
-                return null;
-            }
+	public function get(string $key)
+	{
+	 if (!$this->has($key)) {
+		return null;
+	 }
 
-            $value = $this->bindings[$key];
+	 $value = $this->bindings[$key];
 
-            if (is_callable($value)) {
-                $value = $this->bindings[$key] = call_user_func($value);
-            }
+	 if (is_callable($value)) {
+		$value = $this->bindings[$key] = call_user_func($value);
+	 }
 
-            return $value;
-        }
+	 return $value;
+	}
 
-        public function has(string $key): bool
-        {
-            return array_key_exists($key, $this->bindings);
-        }
+	public function has(string $key): bool
+	{
+	 return array_key_exists($key, $this->bindings);
+	}
 
-        public function set(string $key, $value): void
-        {
-            $this->bindings[$key] = $value;
-        }
+	public function set(string $key, $value): void
+	{
+	 $this->bindings[$key] = $value;
+	}
 
-        public function unset(string $key)
-        {
-            unset($this->bindings[$key]);
-        }
+	public function unset(string $key)
+	{
+	 unset($this->bindings[$key]);
+	}
 
-        public function __invoke($key)
-        {
-            return $this->get($key);
-        }
+	public function __invoke($key)
+	{
+	 return $this->get($key);
+	}
 
-        public function __get($key)
-        {
-            return $this->get($key);
-        }
+	public function __get($key)
+	{
+	 return $this->get($key);
+	}
 
-        public function __set($key, $value)
-        {
-            $this->set($key, $value);
-        }
-    }
+	public function __set($key, $value)
+	{
+	 $this->set($key, $value);
+	}
+ }
